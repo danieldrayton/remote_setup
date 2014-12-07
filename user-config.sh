@@ -1,0 +1,1 @@
+#set up the user environment with this script (eg EDITOR)
