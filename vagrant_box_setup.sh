@@ -33,8 +33,8 @@ sudo apt-get install phpmyadmin -y #if done manually be sure to spacebar for * n
 
 sudo service apache2 restart
 #need to open the /etc/apache2/apache2.conf file and add the line:
-#ServerName vagrant
-#EnableSendFile Off
+sudo echo "ServerName vagrant" >> /etc/apache2/apache2.conf
+sudo echo "EnableSendFile Off" >> /etc/apache2/apache2.conf
 #to the end of the file. My also need to include:
 #Include /etc/phpmyadmin/apache.conf
 #to the end of the file - seems to work without that though
