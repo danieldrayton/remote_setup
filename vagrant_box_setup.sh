@@ -46,7 +46,7 @@ sudo apt-get install postgresql libpq-dev -y
 sudo mkdir -p /usr/local/pgsql/data
 sudo chown postgres:postgres /usr/local/pgsql/data
 sudo su postgres
-/usr/lib/postgresql/9.1/bin/initdb -D /usr/local/pgsql/data
+/usr/lib/postgresql/9.3/bin/initdb -D /usr/local/pgsql/data
 createuser -s vagrant
 exit
 psql postgres -c "ALTER ROLE vagrant CREATEDB"
@@ -63,10 +63,11 @@ source ~/.bashrc
 
 #install ruby
 sudo apt-get install libssl-dev -y
-rbenv install 2.1.5
+sudo apt-get install libffi-dev -y
+rbenv install 2.2.0
 
-rbenv local 2.1.5
-rbenv global 2.1.5
+rbenv local 2.2.0
+rbenv global 2.2.0
 
 echo 'install: --no-r-doc --no-ri' >> ~/.gemrc
 echo 'update: --no-r-doc --no-ri' >> ~/.gemrc
@@ -75,9 +76,10 @@ rbenv rehash
 
 gem update --system
 gem install bundler
-gem install rails -v '4.1.8'
+gem install rails -v '4.2.0'
 gem install pg
 gem install mysql2
+gem install sass
 
 rbenv rehash
 
