@@ -6,10 +6,8 @@ sudo apt-get upgrade -y
 sudo apt-get install curl -y
 
 sudo apt-get install git -y
-git config --global user.name "Daniel Drayton"
-git config --global user.email "daniel.drayton@gmail.com"
 
-sudo apt-get install build-essential -y
+sudo apt-get install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev -y
 sudo apt-get install nodejs -y
 
 sudo apt-get install libsqlite3-dev -y
@@ -31,13 +29,11 @@ echo 'phpmyadmin phpmyadmin/mysql/app-pass password rails' | debconf-set-selecti
 echo 'phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2' | debconf-set-selections
 sudo apt-get install phpmyadmin -y #if done manually be sure to spacebar for * next to apache2, tab, enter
 
-sudo service apache2 restart
-#need to open the /etc/apache2/apache2.conf file and add the line:
 sudo echo "ServerName vagrant" >> /etc/apache2/apache2.conf
 sudo echo "EnableSendFile Off" >> /etc/apache2/apache2.conf
-#to the end of the file. My also need to include:
-#Include /etc/phpmyadmin/apache.conf
-#to the end of the file - seems to work without that though
+sudo echo "Include /etc/phpmyadmin/apache.conf" >> /etc/apache2/apache2.conf
+
+sudo service apache2 restart
 
 #install postgresql
 sudo /usr/sbin/update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
@@ -62,8 +58,6 @@ git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-bu
 source ~/.bashrc
 
 #install ruby
-sudo apt-get install libssl-dev -y
-sudo apt-get install libffi-dev -y
 rbenv install 2.2.0
 
 rbenv local 2.2.0
